@@ -1,354 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AnimeCentral - Greatest Anime Website</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="shortcut icon" href="Images\kakashi.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Japan Study & JLPT Master Roadmaps (Merged)</title>
+<style>
+:root{
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
+  --bg: radial-gradient(1200px 500px at 10% -20%, #e8f0ff 0%, #f7f9fd 45%, #eef3fb 100%);
+  --surface-1: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-soft: #f3f6fc;
+  --glass: rgba(255,255,255,.72);
 
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-accent: #185fa5;
+  --text-success: #0f6e56;
+  --text-danger: #9b2c2c;
+  --text-warning: #854f0b;
+  --text-pro: #534ab7;
+
+  --fill-accent: #185fa5;
+  --bg-accent: #eaf3ff;
+  --bg-success: #ecfdf5;
+  --bg-danger: #fef2f2;
+  --bg-warning: #fff7ed;
+  --bg-pro: #f5f3ff;
+
+  --border: #dbe2ea;
+  --border-strong: #cbd5e1;
+  --border-accent: #93c5fd;
+  --border-success: #86efac;
+  --border-danger: #fda4af;
+  --border-warning: #fdba74;
+  --border-pro: #c4b5fd;
+
+  --radius: 14px;
+  --radius-lg: 18px;
+
+  --shadow-xs: 0 1px 3px rgba(15, 23, 42, .06);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, .06);
+  --shadow-md: 0 10px 28px rgba(15, 23, 42, .10);
+  --shadow-lg: 0 20px 44px rgba(15, 23, 42, .14);
+
+  --neo-1: #6aa7ff;
+  --neo-2: #8b7bff;
+  --neo-3: #37d6c4;
+}
+
+/* DARK THEME */
+[data-theme="dark"]{
+  --bg: radial-gradient(1200px 600px at 8% -15%, #0e1b34 0%, #0b1224 42%, #090f1d 100%);
+  --surface-1: #0f172a;
+  --surface-2: #111c32;
+  --surface-soft: #0f1a30;
+  --glass: rgba(15, 23, 42, .72);
+
+  --text-primary: #e5edf9;
+  --text-secondary: #b8c4d8;
+  --text-muted: #8da0bf;
+  --text-accent: #7eb5ff;
+  --text-success: #48d5a8;
+  --text-danger: #ff8f8f;
+  --text-warning: #ffc778;
+  --text-pro: #b9a7ff;
+
+  --fill-accent: #7eb5ff;
+  --bg-accent: rgba(66, 125, 221, .16);
+  --bg-success: rgba(30, 166, 112, .17);
+  --bg-danger: rgba(205, 74, 74, .15);
+  --bg-warning: rgba(205, 139, 42, .16);
+  --bg-pro: rgba(124, 95, 244, .16);
+
+  --border: #253452;
+  --border-strong: #2f446b;
+  --border-accent: #4f8ce6;
+  --border-success: #35b788;
+  --border-danger: #d97a7a;
+  --border-warning: #d89d54;
+  --border-pro: #8676ea;
+
+  --shadow-xs: 0 1px 3px rgba(0,0,0,.30);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,.30);
+  --shadow-md: 0 10px 28px rgba(0,0,0,.36);
+  --shadow-lg: 0 20px 44px rgba(0,0,0,.45);
+
+  --neo-1: #6aa7ff;
+  --neo-2: #a68cff;
+  --neo-3: #3fe0cf;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after{
+  transition:
+    background-color .35s ease,
+    color .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease,
+    fill .35s ease,
+    stroke .35s ease !important;
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  line-height:1.45;
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* Futuristic animated background layers */
+body::before, body::after{
+  content:"";
+  position:fixed;
+  inset:-10% -10%;
+  z-index:-3;
+  pointer-events:none;
+}
+body::before{
+  background:
+    radial-gradient(300px 220px at 15% 20%, color-mix(in srgb, var(--neo-1) 26%, transparent), transparent 70%),
+    radial-gradient(280px 220px at 80% 15%, color-mix(in srgb, var(--neo-2) 24%, transparent), transparent 72%),
+    radial-gradient(320px 250px at 75% 80%, color-mix(in srgb, var(--neo-3) 20%, transparent), transparent 72%);
+  filter:blur(16px);
+  animation:auraShift 14s ease-in-out infinite alternate;
+}
+body::after{
+  z-index:-2;
+  opacity:.18;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--text-accent) 20%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--text-accent) 16%, transparent) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 50% 35%, #000 28%, transparent 72%);
+}
+@keyframes auraShift{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(1.5%, -1%, 0) scale(1.04)}
+}
+
+/* click ripple */
+.click-anim{
+  position:relative;
+  overflow:hidden;
+}
+.click-anim::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:8px;height:8px;
+  border-radius:999px;
+  background:color-mix(in srgb, var(--text-accent) 35%, transparent);
+  transform:translate(-50%,-50%) scale(1);
+  opacity:0;
+  pointer-events:none;
+}
+.click-anim:active::after{
+  animation:ripple .45s ease-out;
+}
+@keyframes ripple{
+  0%{opacity:.55; transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0; transform:translate(-50%,-50%) scale(20)}
+}
+
+#app{
+  width:min(1500px, calc(100% - 2rem));
+  margin:clamp(8px, 1.6vw, 24px) auto;
+  min-height:calc(100vh - 1.25rem);
+  background:var(--glass);
+  border:1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius:clamp(12px, 1.8vw, 22px);
+  overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  backdrop-filter: blur(10px);
+}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+.theme-toggle{
+  margin-left:auto;
+  border:1px solid var(--border-strong);
+  background:linear-gradient(180deg, var(--surface-1), var(--surface-2));
+  color:var(--text-primary);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:var(--shadow-xs);
+  transition:.2s ease;
+}
+.theme-toggle:hover{transform:translateY(-1px); box-shadow:var(--shadow-sm)}
+.theme-toggle:active{transform:translateY(0)}
+
+/* Header + top nav */
+.top-wrap{
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:0.5px solid var(--border);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 92%, transparent), color-mix(in srgb, var(--surface-2) 82%, transparent));
+  backdrop-filter:blur(12px);
+}
+.top-head{
+  padding:clamp(0.9rem, 1.8vw, 1.4rem) clamp(0.95rem, 2vw, 1.5rem) .9rem;
+  display:flex;align-items:center;gap:10px;
+}
+.top-title{margin:0;font-size:clamp(1.02rem, .95rem + .7vw, 1.45rem);font-weight:700;letter-spacing:.01em}
+.top-sub{margin:6px 0 0;font-size:clamp(.76rem, .7rem + .24vw, .95rem);color:var(--text-muted)}
+
+.main-tabs,.sub-tabs{
+  display:flex;overflow-x:auto;border-top:0.5px solid var(--border);scrollbar-width:thin;
+  background:color-mix(in srgb, var(--surface-2) 86%, transparent);
+}
+.main-tabs::-webkit-scrollbar,.sub-tabs::-webkit-scrollbar{height:8px}
+.main-tabs::-webkit-scrollbar-thumb,.sub-tabs::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:999px}
+
+.main-tab,.sub-tab{
+  padding:11px 14px;border:none;background:none;cursor:pointer;display:flex;align-items:center;gap:6px;
+  font-size:13px;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;transition:all .18s ease;
+  position:relative;overflow:hidden;
+}
+.main-tab::after,.sub-tab::after{
+  content:"";position:absolute;inset:0;transform:translateX(-120%);
+  background:linear-gradient(120deg, transparent 35%, color-mix(in srgb, var(--text-accent) 16%, transparent) 50%, transparent 65%);
+  transition:transform .55s ease;
+}
+.main-tab:hover::after,.sub-tab:hover::after{transform:translateX(120%)}
+.main-tab.on,.sub-tab.on{
+  color:var(--text-accent);border-bottom-color:var(--fill-accent);font-weight:700;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--text-accent) 10%, transparent), transparent);
+}
+.main-tab:not(.on),.sub-tab:not(.on){color:var(--text-secondary)}
+
+.page{padding:0}
+.hidden{display:none}
+
+/* page switch animation */
+.page-enter{
+  animation:pageIn .28s ease;
+}
+@keyframes pageIn{
+  from{opacity:0; transform:translateY(8px) scale(.995)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+
+/* Shared styles from source files */
+.tb,.tab-btn,.tabbtn{
+  padding:10px 14px;border:none;background:none;cursor:pointer;display:flex;align-items:center;gap:6px;
+  font-size:13px;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;transition:all .16s ease;
+  position:relative;overflow:hidden;
+}
+.tb.on,.tab-btn.active,.tabbtn.on{color:var(--text-accent);border-bottom-color:var(--fill-accent);font-weight:700}
+.tb:not(.on),.tab-btn:not(.active),.tabbtn:not(.on){color:var(--text-secondary)}
+.tb:hover,.tab-btn:hover,.tabbtn:hover{background:color-mix(in srgb, var(--border-strong) 35%, transparent)}
+
+.cd,.card,.card2{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--surface-1) 96%, transparent), color-mix(in srgb, var(--surface-2) 96%, transparent));
+  border:1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.cd:hover,.card:hover,.card2:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+  border-color:color-mix(in srgb, var(--text-accent) 32%, var(--border));
+}
+.cd{padding:1rem 1.25rem;margin-bottom:10px}
+.card{border-radius:var(--radius)}
+.card2{padding:1rem 1.25rem;margin-bottom:10px}
+
+.lb,.section-label,.lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px}
+.tg,.tag,.badge{font-size:10px;padding:2px 8px;border-radius:999px;border:0.5px solid;white-space:nowrap}
+.badge{margin-left:8px}
+.kv{display:flex;gap:1rem;padding:7px 0;border-bottom:0.5px solid var(--border)}
+.kv:last-child{border-bottom:none}
+.kvl{min-width:116px;font-size:12px;font-weight:600;color:var(--text-muted)}
+.kvv{font-size:13px;color:var(--text-primary);line-height:1.55}
+.qa{padding:10px 0;border-bottom:0.5px solid var(--border)}
+.qa:last-child{border-bottom:none;padding-bottom:0}
+
+.pill-btn,.lvlpill{
+  padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;
+  transition:all .18s ease;border:0.5px solid var(--border-strong);background:var(--surface-2);color:var(--text-secondary);
+}
+.pill-btn:hover,.lvlpill:hover{transform:translateY(-1px);box-shadow:var(--shadow-xs)}
+.pill-btn:active,.lvlpill:active{transform:translateY(0)}
+
+.row-item{display:flex;gap:12px;align-items:flex-start}
+.stat{
+  flex:1;text-align:center;padding:10px 4px;border-radius:10px;background:var(--surface-1);
+  border:0.5px solid var(--border);box-shadow:inset 0 0 0 1px color-mix(in srgb, #fff 24%, transparent);
+}
+.statn{font-size:18px;font-weight:700;margin:0}
+.statl{font-size:10px;color:var(--text-muted);margin:2px 0 0;text-transform:uppercase;letter-spacing:.05em}
+.bk,.yt,.tip{padding:10px 0;border-bottom:0.5px solid var(--border)}
+.bk:last-child,.yt:last-child,.tip:last-child{border-bottom:none;padding-bottom:0}
+.yt,.tip{display:flex;gap:10px;align-items:flex-start}
+
+/* Big screens (PC/TV) */
+@media (min-width: 1280px){
+  body{font-size:16px}
+  .top-title{font-size:1.55rem}
+  .top-sub{font-size:.96rem}
+  .main-tab,.sub-tab,.tb,.tab-btn,.tabbtn{font-size:14px}
+  .kvl,.kvv{font-size:14px}
+  .card,.cd,.card2{box-shadow:var(--shadow-md)}
+  #app{width:min(1750px, calc(100% - 3rem))}
+}
+
+/* Laptop/tablet */
+@media (max-width: 1024px){
+  #app{width:min(1200px, calc(100% - 1rem)); margin:8px auto}
+}
+
+/* Mobile */
+@media (max-width: 860px){
+  #app{width:100%;margin:0;min-height:100vh;border:none;border-radius:0}
+  .top-wrap{top:0}
+  .top-head{padding:.92rem .95rem .74rem}
+  .main-tab,.sub-tab,.tb,.tab-btn,.tabbtn{padding:10px 12px;font-size:12.5px}
+  .kv{flex-direction:column;gap:3px}
+  .kvl{min-width:unset}
+  .cd,.card2{padding:.92rem 1rem}
+
+  [style*="grid-template-columns:minmax(0,1fr) minmax(0,1fr)"]{display:block !important}
+  [style*="grid-template-columns:minmax(0,1fr) minmax(0,1fr)"] > div{
+    border-right:none !important;
+    border-bottom:0.5px solid var(--border)
+  }
+  [style*="grid-template-columns:minmax(0,1fr) minmax(0,1fr)"] > div:last-child{border-bottom:none}
+}
+
+/* Tiny mobile */
+@media (max-width: 480px){
+  .top-title{font-size:1rem}
+  .top-sub{font-size:.77rem}
+  .badge,.tg,.tag{font-size:9px;padding:2px 7px}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important}
+  body::before{animation:none}
+}
+</style>
 </head>
-
 <body>
-  <section class="main">
-    <header class="text-gray-600 body-font">
-      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a href="index.html" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <img
-            src="https://www.wallpaperflare.com/static/467/499/639/sharingan-naruto-shippuuden-mangekyou-sharingan-uchiha-obito-wallpaper.jpg"
-            alt="" style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%;">
-          <span class="ml-3 text-xl" style="color: white;">AnimeCentral</span>
-        </a>
-        <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"
-          style="color: white; cursor: pointer;">
-          <a href="anime.html" class="mr-5 hover:text-white-900">Animes</a>
-          <a href="manga.html" class="mr-5 hover:text-white-900">Mangas</a>
-          <a href="song.html" class="mr-5 hover:text-white-900">Songs</a>
-          <a href="character.html" class="mr-5 hover:text-white-900">Characters</a>
-        </nav>
-        <a href="death.html">
-            
-          <button
-            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-            style="background-color:rgba(188, 183, 186, 0.1); color: white;">Painful Deaths &rarr;
-          </button>
-      </a>
+<h2 class="sr-only">Merged page: MEXT scholarship roadmap, scholarships/internships map, JLPT N5-N1 syllabus</h2>
+<div id="app">
+  <div class="top-wrap">
+    <div class="top-head">
+  <div>
+    <h1 class="top-title">Japan Roadmaps — Unified Master Page</h1>
+    <p class="top-sub">All original files merged with same details, same context, same visual style.</p>
+  </div>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙 Dark</button>
+</div>
+    <div class="main-tabs" id="mainTabs"></div>
+    <div class="sub-tabs" id="subTabs"></div>
+  </div>
+
+  <div class="page" id="page-mext"></div>
+  <div class="page hidden" id="page-map"></div>
+  <div class="page hidden" id="page-jlpt"></div>
+</div>
+
+<script>
+/* =========================
+   GLOBAL TOP-LEVEL NAV
+========================= */
+const MAIN = [
+  {id:"study", label:"Study & Scholarship"},
+  {id:"language", label:"JLPT Master Plan"}
+];
+const SUB = {
+  study: [
+    {id:"mext", label:"MEXT Scholarship Roadmap"},
+    {id:"map", label:"Scholarships & Internships Map"}
+  ],
+  language: [
+    {id:"jlpt", label:"JLPT N5 → N1 Roadmap"}
+  ]
+};
+let topState = { main:"study", sub:"mext" };
+
+function renderTopNav(){
+  const mainTabs = document.getElementById("mainTabs");
+  const subTabs = document.getElementById("subTabs");
+
+  mainTabs.innerHTML = MAIN.map(m => `
+    <button class="main-tab click-anim ${topState.main===m.id?"on":""}" onclick="setMain('${m.id}')">${m.label}</button>
+  `).join("");
+
+  subTabs.innerHTML = SUB[topState.main].map(s => `
+    <button class="sub-tab click-anim ${topState.sub===s.id?"on":""}" onclick="setSub('${s.id}')">${s.label}</button>
+  `).join("");
+
+  const pages = ["page-mext","page-map","page-jlpt"];
+  pages.forEach(id => document.getElementById(id).classList.remove("page-enter"));
+
+  document.getElementById("page-mext").classList.toggle("hidden", topState.sub!=="mext");
+  document.getElementById("page-map").classList.toggle("hidden", topState.sub!=="map");
+  document.getElementById("page-jlpt").classList.toggle("hidden", topState.sub!=="jlpt");
+
+  const activePageId = topState.sub === "mext" ? "page-mext" : topState.sub === "map" ? "page-map" : "page-jlpt";
+  const activePage = document.getElementById(activePageId);
+  requestAnimationFrame(() => activePage.classList.add("page-enter"));
+}
+function setMain(m){
+  topState.main = m;
+  topState.sub = SUB[m][0].id;
+  renderTopNav();
+}
+function setSub(s){
+  topState.sub = s;
+  renderTopNav();
+}
+
+/* =========================
+   BLOCK 1: mext_japan_roadmap.html
+========================= */
+(function initMextRoadmap(){
+const mount = document.getElementById("page-mext");
+
+const phases=[
+  {id:0,tag:"SCRIPTS",name:"Hiragana & Katakana",period:"July 2026",duration:"4 weeks",col:"teal",goal:"Master both Japanese scripts from scratch",milestones:["Week 1–2: All 46 Hiragana characters (あいうえお…)","Week 3: All 46 Katakana characters (アイウエオ…)","Week 4: Reading drills & handwriting practice","Learn basic stroke order rules"],resources:[{n:"Tae Kim's Grammar Guide",t:"Free"},{n:"Anki + Hiragana/Katakana decks",t:"Free app"},{n:"Dr. Moku (mnemonic app)",t:"Paid app"},{n:"Japanese Ammo with Misa (YouTube)",t:"Free"}],exam:null,daily:"45 min/day"},
+  {id:1,tag:"N5",name:"JLPT N5 — Beginner",period:"Aug – Dec 2026",duration:"5 months",col:"blue",goal:"Pass JLPT N5 in December 2026",milestones:["Vocabulary: ~800 words","Kanji: ~100 characters","Grammar: ~100 patterns (は, が, で, に…)","Basic greetings, self-intro, daily phrases","Read simple sentences in hiragana & basic kanji"],resources:[{n:"Genki I Textbook",t:"Book"},{n:"JLPT Sensei (jlptsensei.com)",t:"Free web"},{n:"Anki — Core 2000 N5 deck",t:"Free app"},{n:"NHK Web Easy (nhk.or.jp/easy)",t:"Free web"},{n:"JapanesePod101",t:"Freemium"}],exam:"December 2026",daily:"1.5 hrs/day"},
+  {id:2,tag:"N4",name:"JLPT N4 — Elementary",period:"Jan – Jul 2027",duration:"7 months",col:"purple",goal:"Pass JLPT N4 in July 2027",milestones:["Vocabulary: ~1,500 words total","Kanji: ~300 characters total","Grammar: ~200 patterns","Conversations: shopping, transport, directions","Read simple texts about daily life"],resources:[{n:"Genki I & II (complete both)",t:"Book"},{n:"Bunpro.jp — grammar SRS",t:"Freemium"},{n:"WaniKani — kanji learning",t:"Paid"},{n:"Anime with JP subtitles (Shirokuma Cafe)",t:"Free"},{n:"Anki — Core 2000 N4 deck",t:"Free app"}],exam:"July 2027",daily:"2 hrs/day"},
+  {id:3,tag:"N3",name:"JLPT N3 — Intermediate",period:"Aug – Dec 2027",duration:"5 months",col:"amber",goal:"Pass JLPT N3 in December 2027",milestones:["Vocabulary: ~3,750 words total","Kanji: ~650 characters total","Complex sentence structures & connectors","Understand main points of everyday texts","Start reading basic academic/tech content in Japanese"],resources:[{n:"Tobira — Intermediate Textbook",t:"Book"},{n:"So-Matome N3 series",t:"Book"},{n:"NHK Easy News — daily reading",t:"Free web"},{n:"Bunpro.jp N3 grammar path",t:"Freemium"},{n:"Comprehensible Japanese (YouTube)",t:"Free"}],exam:"December 2027",daily:"2–2.5 hrs/day"},
+  {id:4,tag:"N2",name:"JLPT N2 + MEXT Apply",period:"Jan – Jul 2028",duration:"7 months",col:"coral",goal:"Pass JLPT N2 & submit your MEXT application",milestones:["Vocabulary: ~6,000 words total","Kanji: ~1,000 characters total","Academic writing in Japanese","Email Japanese professors (Jan–Mar 2028)","Draft Research Proposal & SOP","MEXT Embassy Application: April–June 2028"],resources:[{n:"So-Matome N2 full series",t:"Book"},{n:"JLPT Official Practice Tests (N2)",t:"Book"},{n:"Japanese academic papers in your field",t:"Practice"},{n:"MEXT application portal (mext.go.jp)",t:"Official"}],exam:"July 2028",daily:"3 hrs/day"},
+];
+
+const mextSteps=[
+  {n:"1",title:"Research labs & professors",desc:"Browse university websites, Google Scholar, and ResearchGate to find CSE labs that match your interest (AI, Systems, Networks, etc.)."},
+  {n:"2",title:"Email professors for PoA",desc:"Get a Pre-acceptance letter from a professor. This greatly strengthens your application. Start emailing from January 2028."},
+  {n:"3",title:"Watch for embassy notification",desc:"Check the Embassy of Japan in India website. Applications typically open April–June 2028 for the following academic year."},
+  {n:"4",title:"Prepare your documents",desc:"University transcripts, Research Proposal (2,000–3,000 words), 2 recommendation letters, medical certificate, passport photos."},
+  {n:"5",title:"Primary screening in India",desc:"Embassy shortlists candidates based on documents and conducts an interview in India."},
+  {n:"6",title:"University placement",desc:"Shortlisted candidates are matched with Japanese universities. Confirm your professor and lab."},
+  {n:"7",title:"Official MEXT award",desc:"Japanese university + MEXT officially notify you. Stipend of ¥144,000/month begins from enrollment."},
+];
+
+const topUnis=[
+  {name:"University of Tokyo (UTokyo)",field:"CS, AI, Systems"},
+  {name:"Osaka University",field:"AI, Networks, Security"},
+  {name:"Tohoku University",field:"Systems, HPC, Materials+CS"},
+  {name:"Tokyo Institute of Technology",field:"CS, Robotics, ML"},
+  {name:"Kyoto University",field:"AI, Math-CS, Theoretical"},
+  {name:"Keio University",field:"CS, HCI, Networks"},
+];
+
+const resources=[
+  {cat:"Apps (free)",icon:"ti-device-mobile",items:["Anki — SRS flashcards; download JLPT N5/N4/N3/N2 decks from AnkiWeb","Duolingo Japanese — for building a daily consistency habit","HelloTalk — chat & call with native Japanese speakers","Bunpro.jp — grammar spaced repetition system, structured by JLPT level"]},
+  {cat:"Textbooks",icon:"ti-book",items:["Genki I & II (N5–N4) — most widely used beginner series globally","Tobira (N3) — intermediate bridge; rich reading passages & kanji","So-Matome N3 & N2 — compact exam-focused workbooks, one per skill","JLPT Official Practice Tests — use these in the final 2–3 months before each exam"]},
+  {cat:"Free websites",icon:"ti-world",items:["jlptsensei.com — free vocab, kanji & grammar lists for each level","jisho.org — best Japanese–English dictionary; use it every single day","nhk.or.jp/easy — NHK Easy News; start at N4, essential habit by N3","tae-kim.com — free grammar guide; great supplementary reference","wanikani.com — structured kanji + vocab (paid, but highly effective)"]},
+  {cat:"Immersion content",icon:"ti-player-play",items:["Anime: Shirokuma Cafe, Chi's Sweet Home (N5–N4 level, very slow speech)","Doraemon, Naruto with Japanese subtitles (N4–N3 level)","Comprehensible Japanese (YouTube) — graded listening input, structured","JDrama on Netflix with JP audio + JP subtitles (N3+ level)","Nihongo con Teppei for Beginners (podcast) — natural daily Japanese"]},
+  {cat:"CSE Japan prep",icon:"ti-cpu",items:["JREC-IN Portal — Japan's academic research job board; search labs by field","ResearchGate / Google Scholar — find papers from your target professors","IEEEXplore, ACM DL — read papers from labs you want to join","University lab pages: UTokyo, Osaka U, Tohoku, Tokyo Tech, Kyoto","mext.go.jp (English section) — official MEXT scholarship information"]},
+];
+
+const schedule=[
+  {time:"6:00–6:30 AM",task:"Anki flashcards — vocab & kanji review",icon:"ti-cards"},
+  {time:"7:00–7:30 AM",task:"Grammar study — Genki / Tobira lesson",icon:"ti-book"},
+  {time:"Lunch break (~15 min)",task:"NHK Easy News — read one article aloud",icon:"ti-news"},
+  {time:"8:00–8:30 PM",task:"JLPT practice questions from past papers",icon:"ti-pencil"},
+  {time:"9:00–9:30 PM",task:"Listening: anime, podcast, or shadowing",icon:"ti-headphones"},
+  {time:"Weekends (2–3 hrs)",task:"Mock tests, writing practice, HelloTalk conversations",icon:"ti-calendar"},
+];
+
+const academicTips=[
+  {icon:"ti-chart-bar",text:"Maintain CGPA ≥ 7.5 — MEXT is competitive, a strong GPA matters a lot"},
+  {icon:"ti-code",text:"Do projects & internships aligned with your target research area (AI, Systems, Networks, etc.)"},
+  {icon:"ti-mail",text:"Email 5–10 Japanese professors from January 2028 onwards to get Pre-Acceptance (PoA)"},
+  {icon:"ti-file-text",text:"Start drafting your Research Proposal from 6th semester — refine it each semester"},
+  {icon:"ti-star",text:"Get 2 strong recommendation letters from professors who know your work closely"},
+  {icon:"ti-language",text:"If your target lab works in English, JLPT N2 + a strong TOEFL/IELTS = very competitive"},
+];
+
+const colMap={
+  teal:{bg:"var(--bg-success)",border:"var(--border-success)",text:"var(--text-success)",fill:"#0F6E56"},
+  blue:{bg:"var(--bg-accent)",border:"var(--border-accent)",text:"var(--text-accent)",fill:"#185FA5"},
+  purple:{bg:"var(--bg-pro)",border:"var(--border-pro)",text:"var(--text-pro)",fill:"#534AB7"},
+  amber:{bg:"var(--bg-warning)",border:"var(--border-warning)",text:"var(--text-warning)",fill:"#854F0B"},
+  coral:{bg:"var(--bg-danger)",border:"var(--border-danger)",text:"var(--text-danger)",fill:"#993C1D"},
+};
+
+let state={tab:"roadmap",phase:0};
+
+function render(){
+  const {tab,phase:pi}=state;
+  const p=phases[pi];
+  const c=colMap[p.col];
+
+  const tabs=[
+    {id:"roadmap",label:"Roadmap",icon:"ti-map"},
+    {id:"mext",label:"MEXT info",icon:"ti-award"},
+    {id:"resources",label:"Resources",icon:"ti-books"},
+    {id:"schedule",label:"Daily plan",icon:"ti-calendar-time"},
+  ];
+
+  let body="";
+
+  if(tab==="roadmap"){
+    const pills=phases.map((ph,i)=>{
+      const pc=colMap[ph.col];
+      const a=i===pi;
+      return `<button class="pill-btn click-anim" onclick="setStateMext({phase:${i}})" style="border:0.5px solid ${a?pc.fill:"var(--border-strong)"};background:${a?pc.fill:"var(--surface-2)"};color:${a?"#fff":"var(--text-secondary)"}">${ph.tag}</button>`;
+    }).join("");
+
+    const milestones=p.milestones.map(m=>`<div style="display:flex;gap:8px;margin-bottom:8px;font-size:13px"><i class="ti ti-circle-check" style="font-size:15px;color:${c.text};flex-shrink:0;margin-top:1px" aria-hidden="true"></i><span style="color:var(--text-secondary);line-height:1.4">${m}</span></div>`).join("");
+    const resItems=p.resources.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:13px;color:var(--text-secondary)">${r.n}</span><span class="badge" style="background:${c.bg};color:${c.text};border:0.5px solid ${c.border}">${r.t}</span></div>`).join("");
+    const tl=phases.map((ph,i)=>{
+      const pc=colMap[ph.col];const a=i===pi;
+      return `<div onclick="setStateMext({phase:${i}})" style="display:flex;gap:12px;align-items:flex-start;margin-bottom:${i<phases.length-1?"14px":"0"};cursor:pointer">
+        <div style="width:34px;height:34px;border-radius:50%;background:${a?pc.fill:"var(--surface-1)"};border:0.5px solid ${a?pc.fill:"var(--border-strong)"};color:${a?"#fff":"var(--text-muted)"};display:flex;align-items:center;justify-content:center;font-weight:500;font-size:11px;flex-shrink:0;z-index:1">${ph.tag}</div>
+        <div style="padding-top:6px"><p style="margin:0;font-size:13px;font-weight:${a?500:400};color:${a?pc.fill:"var(--text-primary)"}">${ph.name}</p><p style="margin:1px 0 0;font-size:12px;color:var(--text-muted)">${ph.period}${ph.exam?" · Exam: "+ph.exam:""}</p></div>
+      </div>`;
+    }).join("");
+
+    body=`
+      <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:1rem">${pills}</div>
+      <div class="card" style="overflow:hidden;margin-bottom:1rem">
+        <div style="padding:1rem 1.25rem;background:${c.bg};border-bottom:0.5px solid ${c.border}">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;color:${c.text};font-weight:500;text-transform:uppercase;letter-spacing:.1em">${p.period} · ${p.duration}</p>
+              <h3 style="margin:0;font-size:16px;font-weight:500;color:var(--text-primary)">${p.name}</h3>
+            </div>
+            ${p.exam?`<div style="text-align:right"><div style="font-size:11px;color:${c.text};font-weight:500;margin-bottom:2px">Exam target</div><div style="font-size:13px;font-weight:500;color:var(--text-primary)">${p.exam}</div></div>`:""}
+          </div>
+          <div style="margin-top:8px;font-size:13px;color:var(--text-secondary)"><i class="ti ti-target" style="font-size:14px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>${p.goal}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+          <div style="padding:1rem 1.25rem;border-right:0.5px solid var(--border)">
+            <p class="section-label" style="color:${c.text}">What to cover</p>${milestones}
+          </div>
+          <div style="padding:1rem 1.25rem">
+            <p class="section-label" style="color:${c.text}">Resources</p>${resItems}
+          </div>
+        </div>
+        <div style="padding:10px 1.25rem;border-top:0.5px solid var(--border);background:var(--surface-1);display:flex;align-items:center;gap:8px">
+          <i class="ti ti-clock" style="font-size:15px;color:var(--text-muted)" aria-hidden="true"></i>
+          <span style="font-size:13px;color:var(--text-secondary)"><strong>Daily commitment:</strong> ${p.daily}</span>
+        </div>
       </div>
-    </header>
-    <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto flex flex-wrap">
-        <div class="flex w-full mb-20 flex-wrap">
-          <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4"
-            style="color: wheat;">What is Animes ?</h1>
-          <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base" style="color: rgb(182, 165, 137);">Where
-            imagination meets artistry. Dive into vibrant worlds of captivating stories, rich characters, and stunning
-            visuals. It's a dynamic blend of animation and culture that offers something for everyone, from epic
-            adventures to heartwarming romances and mind-bending mysteries. Join the adventure and discover the endless
-            possibilities of anime.</p>
+      <div class="card" style="padding:1rem 1.25rem">
+        <p class="section-label" style="color:var(--text-muted)">Full timeline</p>
+        <div style="position:relative">
+          <div style="position:absolute;left:17px;top:8px;bottom:8px;width:1px;background:var(--border-strong)"></div>${tl}
         </div>
-        <div class="flex flex-wrap md:-m-2 -m-1">
-          <div class="flex flex-wrap w-1/2">
-            <div class="md:p-2 p-1 w-1/2">
-              <img alt="gallery" class="w-full object-cover h-full object-center block"
-                src="Images\wallpaperflare.com_wallpaper.jpg" style="object-fit: fill;">
-            </div>
-            <div class="md:p-2 p-1 w-1/2">
-              <img alt="gallery" class="w-full object-cover h-full object-center block"
-                src="https://e0.pxfuel.com/wallpapers/911/538/desktop-wallpaper-all-naruto-characters-naruto-shippuden-characters-thumbnail.jpg"
-                style="object-fit: cover;">
-            </div>
-            <div class="md:p-2 p-1 w-full">
-              <img alt="gallery" class="w-full h-full object-cover object-center block"
-                src="https://www.animenewsnetwork.com/thumbnails/crop1200x630gHC/cms/daily-briefs/179746/aot_original-kv_logo_copyright-scaled.jpg"
-                style="object-fit: fill;">
-            </div>
-          </div>
-          <div class="flex flex-wrap w-1/2">
-            <div class="md:p-2 p-1 w-full">
-              <img alt="gallery" class="w-full h-full object-cover object-center block"
-                src="https://static.bandainamcoent.eu/high/dragon-ball/super-dragonball-heroes/00-page-setup/sdbh_game-thumbnail.jpg"
-                style="object-fit: fill; object-position: center center;">
-            </div>
-            <div class="md:p-2 p-1 w-1/2">
-              <img alt="gallery" class="w-full object-cover h-full object-center block"
-                src="Images\death-note-yagami-light-manga-anime-wallpaper-preview.jpg" style="object-fit: cover;">
-            </div>
-            <div class="md:p-2 p-1 w-1/2">
-              <img alt="gallery" class="w-full object-cover h-full object-center block"
-                src="https://static.bandainamcoent.eu/high/one-piece/one-piece-unlimited-word-red-dlx/00-page-setup/opuwr_game-thumbnail.jpg"
-                style="object-fit: cover no-repeat; ">
-            </div>
-          </div>
-        </div>
+      </div>`;
+  }
+
+  if(tab==="mext"){
+    const reqs=[
+      {l:"Nationality",v:"Indian citizens eligible via Embassy of Japan in India"},
+      {l:"Age limit",v:"Under 35 years at time of enrollment"},
+      {l:"Education",v:"B.Tech degree (or completing) — GPA matters significantly"},
+      {l:"Japanese",v:"JLPT N2 minimum; N1 preferred; some labs accept English"},
+      {l:"English",v:"TOEFL/IELTS may be needed depending on the university"},
+      {l:"Research Proposal",v:"2,000–3,000 word proposal required (very important)"},
+      {l:"Stipend",v:"¥144,000/month + full tuition waived + return airfare covered"},
+      {l:"Duration",v:"2.5 years: 6 months research student + 2 years Master's"},
+    ].map((r,i,a)=>`<div style="display:flex;gap:1rem;padding:8px 0;border-bottom:${i<a.length-1?"0.5px solid var(--border)":"none"}"><div style="min-width:130px;font-size:13px;font-weight:500;color:var(--text-secondary)">${r.l}</div><div style="font-size:13px;color:var(--text-primary);line-height:1.4">${r.v}</div></div>`).join("");
+
+    const steps=mextSteps.map((s,i,a)=>`<div style="display:flex;gap:12px;margin-bottom:${i<a.length-1?"14px":"0"}">
+      <div style="width:26px;height:26px;border-radius:50%;background:var(--bg-accent);border:0.5px solid var(--border-accent);color:var(--text-accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0">${s.n}</div>
+      <div><p style="margin:0;font-size:13px;font-weight:500">${s.title}</p><p style="margin:2px 0 0;font-size:12px;color:var(--text-muted);line-height:1.4">${s.desc}</p></div>
+    </div>`).join("");
+
+    const unis=topUnis.map((u,i,a)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${i<a.length-1?"0.5px solid var(--border)":"none"}">
+      <div style="display:flex;gap:10px;align-items:center">
+        <span style="font-size:11px;padding:2px 7px;border-radius:10px;background:var(--surface-1);color:var(--text-muted);border:0.5px solid var(--border)">#${i+1}</span>
+        <span style="font-size:13px">${u.name}</span>
       </div>
-      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white-900"
-        style="text-align: center; color: lavenderblush; text-decoration-line: underline;">Some Pouplar Animes
-      </h1>
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">Naruto
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90); font-weight: 600;">"Naruto" follows the
-              adventures of Naruto Uzumaki, a spirited ninja aiming to become his village's leader, the Hokage.
-              Alongside his friends Sasuke and Sakura, Naruto navigates a world of ninja battles, friendship, and
-              personal growth, striving to protect his village while chasing his dreams.</p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/naruto-677">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
+      <span style="font-size:11px;color:var(--text-muted)">${u.field}</span>
+    </div>`).join("");
 
-            </div>
-          </div>
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://p325k7wa.twic.pics/high/naruto/naruto-suns-4/00-page-setup/ns4_game-thumbnail.jpg?twic=v1/resize=760/step=10/quality=80"
-              style="object-fit: cover;">
-          </div>
+    body=`
+      <div class="card" style="padding:1rem 1.25rem;margin-bottom:10px"><p class="section-label" style="color:var(--text-accent)">MEXT requirements</p>${reqs}</div>
+      <div class="card" style="padding:1rem 1.25rem;margin-bottom:10px"><p class="section-label" style="color:var(--text-accent)">Application process (embassy route)</p>${steps}</div>
+      <div class="card" style="padding:1rem 1.25rem;margin-bottom:10px"><p class="section-label" style="color:var(--text-accent)">Top universities for CSE in Japan</p>${unis}</div>
+      <div style="background:var(--bg-warning);border:0.5px solid var(--border-warning);border-radius:12px;padding:1rem 1.25rem;font-size:13px;color:var(--text-primary)">
+        <i class="ti ti-info-circle" style="font-size:15px;color:var(--text-warning);margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>
+        <strong>MEXT vs METI:</strong> MEXT (Ministry of Education) is the primary academic scholarship for international students doing Masters/PhD — this is what you want. METI (Ministry of Economy) runs separate industry/internship programs. For CSE Masters in Japan, focus on MEXT Embassy route.
+      </div>`;
+  }
+
+  if(tab==="resources"){
+    body=resources.map(cat=>`<div class="card" style="padding:1rem 1.25rem;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><i class="ti ${cat.icon}" style="font-size:16px;color:var(--text-accent)" aria-hidden="true"></i><p style="margin:0;font-size:13px;font-weight:500;color:var(--text-primary)">${cat.cat}</p></div>
+      ${cat.items.map(item=>`<div style="display:flex;gap:8px;margin-bottom:7px;font-size:13px"><i class="ti ti-arrow-right" style="font-size:14px;color:var(--text-muted);flex-shrink:0;margin-top:2px" aria-hidden="true"></i><span style="color:var(--text-secondary);line-height:1.4">${item}</span></div>`).join("")}
+    </div>`).join("");
+  }
+
+  if(tab==="schedule"){
+    const sched=schedule.map((s,i,a)=>`<div style="display:flex;gap:12px;padding:10px 0;border-bottom:${i<a.length-1?"0.5px solid var(--border)":"none"}">
+      <div style="width:32px;height:32px;border-radius:var(--radius);background:var(--bg-accent);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <i class="ti ${s.icon}" style="font-size:16px;color:var(--text-accent)" aria-hidden="true"></i>
+      </div>
+      <div><p style="margin:0 0 2px;font-size:12px;color:var(--text-muted)">${s.time}</p><p style="margin:0;font-size:13px;color:var(--text-primary)">${s.task}</p></div>
+    </div>`).join("");
+
+    const tips=academicTips.map((t,i,a)=>`<div style="display:flex;gap:10px;padding:8px 0;border-bottom:${i<a.length-1?"0.5px solid var(--border)":"none"}">
+      <i class="ti ${t.icon}" style="font-size:16px;color:var(--text-accent);flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+      <span style="font-size:13px;color:var(--text-secondary);line-height:1.4">${t.text}</span>
+    </div>`).join("");
+
+    body=`
+      <div class="card" style="padding:1rem 1.25rem;margin-bottom:10px"><p class="section-label" style="color:var(--text-accent)">Sample daily schedule (college days)</p>${sched}</div>
+      <div class="card" style="padding:1rem 1.25rem;margin-bottom:10px"><p class="section-label" style="color:var(--text-accent)">Parallel academic prep (non-Japanese tasks)</p>${tips}</div>
+      <div style="background:var(--bg-success);border:0.5px solid var(--border-success);border-radius:12px;padding:1rem 1.25rem">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <i class="ti ti-bulb" style="font-size:20px;color:var(--text-success);flex-shrink:0" aria-hidden="true"></i>
+          <div><p style="margin:0 0 4px;font-size:13px;font-weight:500">The golden rule</p><p style="margin:0;font-size:13px;color:var(--text-secondary);line-height:1.5">Consistency beats intensity. Thirty minutes every day is far more effective than five hours once a week. Japanese is a long game — especially alongside B.Tech. Trust the process, don't skip days, and progress will compound.</p></div>
         </div>
-      </section>
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://staticg.sportskeeda.com/editor/2022/12/3bfdc-16705286350714-1920.jpg">
-          </div>
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">Dragon Ball
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90)
-                  ;font-weight: 600;">"Dragon Ball" is an iconic anime series following Goku's adventures as he seeks
-              strength and defends Earth. With memorable characters, epic battles, and the quest for the mystical Dragon
-              Balls, it's a legendary journey that's captivated audiences worldwide for decades.
+      </div>`;
+  }
 
+  const tabsHtml=tabs.map(t=>`<button class="tab-btn click-anim ${tab===t.id?"active":""}" onclick="setStateMext({tab:'${t.id}'})"><i class="ti ${t.icon}" style="font-size:15px" aria-hidden="true"></i>${t.label}</button>`).join("");
 
+  mount.classList.remove("content-shell");
+  void mount.offsetWidth;
+  mount.classList.add("content-shell");
 
+  mount.innerHTML=`
+    <div style="padding:1.5rem 1.25rem 1.25rem;border-bottom:0.5px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:.5rem">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--bg-danger);display:flex;align-items:center;justify-content:center"><i class="ti ti-plane" style="font-size:18px;color:var(--text-danger)" aria-hidden="true"></i></div>
+        <div><p style="margin:0;font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:.05em">B.Tech CSE Ahmedabad → Japan Masters</p><h2 style="margin:0;font-size:18px;font-weight:500">MEXT Scholarship Roadmap</h2></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${["July 2026 start","JLPT N5 → N2","MEXT Embassy route","~2 year journey"].map(tag=>`<span style="font-size:12px;padding:3px 10px;border-radius:20px;background:var(--surface-1);border:0.5px solid var(--border);color:var(--text-secondary)">${tag}</span>`).join("")}
+      </div>
+    </div>
+    <div style="display:flex;border-bottom:0.5px solid var(--border);background:var(--surface-2);overflow-x:auto">${tabsHtml}</div>
+    <div style="padding:1rem 1.25rem">${body}</div>`;
+}
+window.setStateMext=function(patch){state=Object.assign({},state,patch);render();}
+render();
+})();
 
+/* =========================
+   BLOCK 2: japan_scholarships_internships_roadmap.html
+========================= */
+(function initScholarshipMap(){
+const mount = document.getElementById("page-map");
 
-            </p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/dragon-ball-509">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
-            </div>
-          </div>
+const CM={blue:{bg:"var(--bg-accent)",border:"var(--border-accent)",text:"var(--text-accent)",fill:"#185FA5"},teal:{bg:"var(--bg-success)",border:"var(--border-success)",text:"var(--text-success)",fill:"#0F6E56"},purple:{bg:"var(--bg-pro)",border:"var(--border-pro)",text:"var(--text-pro)",fill:"#534AB7"},amber:{bg:"var(--bg-warning)",border:"var(--border-warning)",text:"var(--text-warning)",fill:"#854F0B"},coral:{bg:"var(--bg-danger)",border:"var(--border-danger)",text:"var(--text-danger)",fill:"#993C1D"}};
+
+const scholarships=[{name:"MEXT (Embassy / University route)",col:"blue",coverage:"Full — tuition, ¥144,000–145,000/month stipend, return airfare, no application fee",level:"Master's & PhD (also UG, research, teacher training)",japanese:"Not mandatory at application; N2+ helps for Japanese-taught programs",english:"Not mandatory either, but most English-taught programs expect IELTS/TOEFL or equivalent (B2/CEFR)",how:"Apply via Japanese Embassy in India OR get a professor's recommendation for the University route",notes:"Your primary target — covered in earlier roadmaps. Embassy route deadline typically April–June for October intake."},
+{name:"JASSO Honors Scholarship",col:"teal",coverage:"Partial — ¥48,000/month (varies), no tuition/airfare coverage",level:"Already-enrolled international students (any level)",japanese:"Not required to apply, but you apply only after enrolling in a Japanese university",english:"Not required",how:"Apply through your university's international student office after you've already enrolled in Japan",notes:"A backup top-up, not a standalone path to Japan — useful only after you're already there on MEXT or self-funded basis."},
+{name:"University-specific scholarships",col:"purple",coverage:"Varies — many offer 30–100% tuition waiver; some include a monthly stipend",level:"Master's & PhD (most major universities: UTokyo, Osaka, Tohoku, Tokyo Tech, Kyoto)",japanese:"Not required for English-taught graduate programs",english:"Often required — IELTS/TOEFL or proof of English-medium education",how:"Apply directly through the university's graduate admissions + scholarship office once you secure a professor",notes:"Ask your prospective professor directly: 'What scholarships does this lab/university recommend for international students?' This is the single best move."},
+{name:"Rotary Yoneyama Memorial Foundation",col:"amber",coverage:"Partial — monthly living allowance + round-trip travel; tuition/admission fee NOT covered",level:"Master's & PhD, mainly for students already in Japan",japanese:"Some Japanese ability expected (interview may be in Japanese)",english:"Not specifically required",how:"Apply after arriving in Japan as an enrolled student — largest private scholarship foundation in Japan",notes:"Best used as a supplementary scholarship once enrolled, similar to JASSO."},
+{name:"ADB-JSP (Asian Development Bank – Japan Scholarship)",col:"coral",coverage:"Full — tuition, stipend, travel — only at specific partner universities",level:"Master's, development-related fields (some engineering/tech tracks exist)",japanese:"Not required",english:"Required — programs are taught in English; IELTS/TOEFL typically needed",how:"Apply directly to designated ADB partner universities in Japan (a limited list, check each program)",notes:"Worth checking if a CSE-adjacent program (e.g. ICT for development, data science) exists at a partner university."}];
+
+const internships=[{name:"METI Japan Internship Program",col:"teal",stipend:"~¥90,000/month + flights, accommodation, local transport, insurance, interpreter support",duration:"Several weeks to a few months (varies by course/track)",jlpt:"Not required — English communication ability is sufficient",eligibility:"Ages 18–39, from developing/emerging countries across Asia, Africa, Latin America (India qualifies)",how:"Apply via the official METI Japan Internship Program portal (internshipprogram.go.jp) during open application windows",notes:"Government-backed and explicitly designed for students like you — no Japanese required, fully funded. This is your strongest near-term option."},
+{name:"Sakura Science Program (JST)",col:"blue",stipend:"Fully funded short exchange — flights, accommodation, and a daily allowance covered",duration:"Typically 1–2 weeks (short-term STEM exchange, not a long internship)",jlpt:"Not required",eligibility:"University STEM students nominated through partnership programs or open calls",how:"Apply through Japan Science and Technology Agency (JST) calls, often advertised via your university's international office",notes:"Excellent first exposure to Japan and to a lab — many participants later get research-student offers from the same professor. Worth doing even in your 2nd or 3rd year."},
+{name:"Corporate internships (Rakuten, Mercari, LINE Yahoo, NEC, IBM Japan)",col:"purple",stipend:"Varies — many global tech companies in Japan pay a monthly salary for software engineering interns (English-medium teams)",duration:"Typically 1–3 months (summer internships) or longer for new-grad tracks",jlpt:"Often NOT required for global/English-medium engineering teams; helps for general operations",eligibility:"Open application via company career portals; competitive, CS skills and a strong GitHub/project portfolio matter most",how:"Apply directly via company career pages or platforms like Wantedly and TokyoDev, which list English-friendly Japan-based tech roles",notes:"Best fit for a CSE student aiming long-term at a Japan tech career — start applying from 3rd/4th year once you have solid coding projects."},
+{name:"Vulcanus in Japan",col:"amber",stipend:"Fully funded — ¥1.9 million pro-rata grant, language course, accommodation support",duration:"8 months (4 months Japanese language + 4–8 months paid internship)",jlpt:"Not required at application — language taught as part of the program",eligibility:"EU nationals or citizens of countries associated with the EU Single Market Programme ONLY",how:"Apply via the EU-Japan Centre for Industrial Cooperation",notes:"Excellent program, but currently restricted to EU/SMP nationals — not open to Indian citizens. Listed here so you don't waste time chasing it."}];
+
+const mextFaq=[{q:"Does MEXT require IELTS or TOEFL?",a:"No, not mandatory at the embassy application stage. MEXT's own eligibility rules ask for proof of EITHER Japanese OR English proficiency, OR proof that your prior education was conducted in that language. If you submit a JLPT score, that alone can satisfy the requirement — IELTS/TOEFL is not compulsory if you go the Japanese-language route."},{q:"Then why do some universities ask for IELTS/TOEFL?",a:"Individual graduate schools (UTokyo, Kyoto, Osaka etc.) set their own admission requirements separately from MEXT's eligibility rules. If you apply to an English-taught program, the university itself will usually require IELTS (5.5+) or TOEFL iBT (72+), roughly CEFR B2 level — this is a university admission requirement, not a MEXT scholarship requirement."},{q:"So what should I actually prepare?",a:"Since your plan is JLPT N2 by mid-2028, you can apply via the Japanese-proficiency route and skip IELTS/TOEFL entirely for the MEXT scholarship itself. However, IF your target lab's program is English-taught, that university may still require IELTS/TOEFL regardless of MEXT. Check your specific target program's language of instruction before deciding."},{q:"Can I submit proof instead of a test score?",a:"Yes — if your B.Tech was conducted with English as the primary medium of instruction, you can often submit a certificate from your university confirming this, which exempts you from submitting a separate English test score for MEXT purposes."}];
+
+let tab="scholarships";
+
+function render(){
+  const tabs=[{id:"scholarships",label:"Scholarships",icon:"ti-award"},{id:"internships",label:"Internships",icon:"ti-briefcase"},{id:"mext",label:"MEXT & IELTS/TOEFL",icon:"ti-help-circle"}];
+  let body="";
+
+  if(tab==="scholarships"){
+    body=`<div style="background:var(--bg-warning);border:0.5px solid var(--border-warning);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:12px;font-size:13px;color:var(--text-primary);line-height:1.55">
+      <i class="ti ti-info-circle" style="font-size:15px;color:var(--text-warning);margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>
+      Of these, only <strong>MEXT (Embassy/University route)</strong> can get you to Japan fully funded BEFORE you arrive. JASSO, Rotary, and most university scholarships are supplementary — applied for after you're already enrolled or after securing a professor.
+    </div>` +
+    scholarships.map(s=>{
+      const c=CM[s.col];
+      return `<div class="cd">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px">
+          <h3 style="margin:0;font-size:15px;font-weight:500">${s.name}</h3>
+          <span class="tg" style="background:${c.bg};color:${c.text};border-color:${c.border};flex-shrink:0">${s.level.split(",")[0].split("(")[0].trim()}</span>
         </div>
-      </section>
+        <div class="kv"><div class="kvl">Coverage</div><div class="kvv">${s.coverage}</div></div>
+        <div class="kv"><div class="kvl">Level</div><div class="kvv">${s.level}</div></div>
+        <div class="kv"><div class="kvl">Japanese req.</div><div class="kvv">${s.japanese}</div></div>
+        <div class="kv"><div class="kvl">English req.</div><div class="kvv">${s.english}</div></div>
+        <div class="kv"><div class="kvl">How to apply</div><div class="kvv">${s.how}</div></div>
+        <div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-muted);line-height:1.5"><i class="ti ti-bulb" style="font-size:13px;color:${c.text};margin-right:5px;vertical-align:-2px" aria-hidden="true"></i>${s.notes}</div>
+      </div>`;
+    }).join("");
+  }
 
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">Death Note
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90); font-weight: 600;">"Death Note" follows
-              Light Yagami, a high school student who gains the power to kill anyone by writing their name in a
-              supernatural notebook. As he becomes the vigilante "Kira," a thrilling battle of wits unfolds with
-              detective L. This dark and intense anime delves into themes of justice, power, and morality, keeping
-              viewers on the edge of their seats throughout.
-            </p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/death-note-60">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
-            </div>
-          </div>
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://saichintala.files.wordpress.com/2015/10/maxresdefault.jpg" style="object-fit: cover;">
-          </div>
-        </div>
-      </section>
+  if(tab==="internships"){
+    body=`<div style="background:var(--bg-success);border:0.5px solid var(--border-success);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:12px;font-size:13px;color:var(--text-primary);line-height:1.55">
+      <i class="ti ti-target" style="font-size:15px;color:var(--text-success);margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>
+      For an Indian CSE student wanting paid Japan experience without JLPT, the <strong>METI Japan Internship Program</strong> and <strong>Sakura Science Program</strong> are your most realistic near-term options — both are government-backed and explicitly open to non-Japanese-speaking applicants from India.
+    </div>` +
+    internships.map(s=>{
+      const c=CM[s.col];
+      return `<div class="cd">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px"><h3 style="margin:0;font-size:15px;font-weight:500">${s.name}</h3></div>
+        <div class="kv"><div class="kvl">Stipend/funding</div><div class="kvv">${s.stipend}</div></div>
+        <div class="kv"><div class="kvl">Duration</div><div class="kvv">${s.duration}</div></div>
+        <div class="kv"><div class="kvl">JLPT needed?</div><div class="kvv">${s.jlpt}</div></div>
+        <div class="kv"><div class="kvl">Eligibility</div><div class="kvv">${s.eligibility}</div></div>
+        <div class="kv"><div class="kvl">How to apply</div><div class="kvv">${s.how}</div></div>
+        <div style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--border);font-size:12px;color:var(--text-muted);line-height:1.5"><i class="ti ti-bulb" style="font-size:13px;color:${c.text};margin-right:5px;vertical-align:-2px" aria-hidden="true"></i>${s.notes}</div>
+      </div>`;
+    }).join("");
+  }
 
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://www.hindustantimes.com/ht-img/img/2023/11/09/1600x900/Attack_on_Titan_1688396118454_1699525146735.jpeg">
-          </div>
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">Attack On
-              Titan
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90)
-            ;font-weight: 600;">"Attack on Titan" immerses viewers in a world where humanity battles colossal Titans.
-              Eren, Mikasa, and Armin wield special gear to combat these creatures. Amidst harrowing battles, they
-              unravel mysteries surrounding the Titans and humanity's protective walls. The anime blends intense action
-              with deep themes and shocking revelations, creating an unforgettable experience.
-            </p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/attack-on-titan-112">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+  if(tab==="mext"){
+    body=`<div class="cd">
+      <p class="lb" style="color:var(--text-accent)">MEXT language requirement — clarified</p>
+      ${mextFaq.map(f=>`<div class="qa"><p style="margin:0 0 4px;font-size:13px;font-weight:500;color:var(--text-primary)">${f.q}</p><p style="margin:0;font-size:13px;color:var(--text-secondary);line-height:1.55">${f.a}</p></div>`).join("")}
+    </div>
+    <div style="background:var(--bg-accent);border:0.5px solid var(--border-accent);border-radius:12px;padding:1rem 1.25rem">
+      <p style="margin:0 0 4px;font-size:13px;font-weight:500"><i class="ti ti-check" style="font-size:14px;margin-right:5px;vertical-align:-2px" aria-hidden="true"></i>Bottom line for your plan</p>
+      <p style="margin:0;font-size:13px;color:var(--text-secondary);line-height:1.6">Your JLPT N2-by-2028 roadmap already satisfies MEXT's own language proficiency rule on its own — you do not need to add IELTS/TOEFL prep on top of your Japanese study plan, unless the specific lab or program you target is English-taught. Confirm this only once you've identified your target professor/program.</p>
+    </div>`;
+  }
 
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">One Piece
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90); font-weight: 600;">"One Piece" sails
-              viewers into a vast world of high seas adventure. Follow Monkey D. Luffy and his eclectic crew of pirates
-              as they search for the ultimate treasure, the legendary One Piece. Along the way, they encounter
-              formidable foes, forge unbreakable bonds, and explore the wonders of the Grand Line. With its boundless
-              imagination, epic battles, and heartfelt camaraderie.
+  const tabsHtml=tabs.map(t=>`<button class="tb click-anim ${tab===t.id?"on":""}" onclick="setTabMap('${t.id}')"><i class="ti ${t.icon}" style="font-size:15px" aria-hidden="true"></i>${t.label}</button>`).join("");
 
-            </p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/one-piece-100">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
-            </div>
-          </div>
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://miro.medium.com/v2/resize:fit:850/1*8jusc7J3pC9_Qydw0OYThA.jpeg" style="object-fit: cover;">
-          </div>
-        </div>
-      </section>
+  mount.innerHTML=`
+    <div style="padding:1.5rem 1.25rem 1rem;border-bottom:0.5px solid var(--border)">
+      <p style="margin:0 0 4px;font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:.04em">Beyond MEXT · Funding & internship paths</p>
+      <h2 style="margin:0;font-size:18px;font-weight:500">Japan Scholarships & Internships Map</h2>
+    </div>
+    <div style="display:flex;border-bottom:0.5px solid var(--border);background:var(--surface-2);overflow-x:auto">${tabsHtml}</div>
+    <div style="padding:1rem 1.25rem">${body}</div>`;
+}
+window.setTabMap=function(t){tab=t;render();}
+render();
+})();
 
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://wallpapers.com/images/featured/bleach-anime-x5ildyvb7u41kblh.jpg">
-          </div>
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">Bleach
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90)
-            ;font-weight: 600;">"Bleach" thrusts viewers into the supernatural realm of Soul Reapers and Hollows.
-              Follow Ichigo Kurosaki as he gains the powers of a Soul Reaper and embarks on a quest to protect the
-              living world from evil spirits. With his friends by his side, Ichigo battles formidable foes, uncovers
-              dark conspiracies, and navigates the complexities of the afterlife. This gripping anime blends intense
-              action, supernatural intrigue, and heartfelt friendships, creating a captivating experience that resonates
-              with audiences.
+/* =========================
+   BLOCK 3: jlpt_n5_to_n1_syllabus_roadmap.html
+========================= */
+(function initJlptMaster(){
+const mount = document.getElementById("page-jlpt");
 
-            </p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/bleach-806">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+const levels=[{id:0,tag:"N5",name:"JLPT N5",col:"teal",vocab:"~800",kanji:"~100",grammar:"~100",hours:"325–600",desc:"Foundation level — basic everyday expressions, simple conversations, and the ability to read short, simple sentences written in hiragana, katakana, and basic kanji.",syllabus:["Hiragana & Katakana — full mastery, reading and writing","Basic sentence structure: は, が, を, に, で particles","Verb forms: ます-form (present/past, affirmative/negative)","い-adjectives and な-adjectives, basic adjective conjugation","Numbers, counters, time, dates, basic daily vocabulary","Simple て-form usage, basic requests and permissions","Reading: short passages on daily life, simple signs and notices","Listening: short, slow dialogues on familiar everyday topics"],books:[{t:"Genki I — Textbook + Workbook (3rd ed.)",tag:"Core",notes:"The industry-standard beginner course. Covers all N5 grammar and most vocabulary across 12 chapters. Do every exercise in both books."},{t:"So-Matome N5 (Grammar, Vocabulary, Kanji, Reading-Listening)",tag:"Exam prep",notes:"Use in the final 4–6 weeks before the exam to drill JLPT-format questions and confirm full syllabus coverage."},{t:"Try! N5 (try N5 mondai)",tag:"Optional",notes:"A solid alternative/supplement to So-Matome — slightly more challenging practice questions, good for extra drilling."}]},
+{id:1,tag:"N4",name:"JLPT N4",col:"blue",vocab:"~1,500",kanji:"~300",grammar:"~200",hours:"575–1000",desc:"Elementary level — understanding of basic Japanese used in everyday situations, including the ability to read passages on familiar daily topics.",syllabus:["て-form extensions: ている, てある, てしまう, てもいい, てはいけない","Potential, passive, and causative-adjacent basic forms","Conditional forms: たら, ば, と","Plain form vs ます-form, casual speech patterns","Comparisons, giving/receiving verbs (あげる/もらう/くれる)","Volitional form, intention expressions (つもり, よてい)","Reading: simple narratives and everyday written communications","Listening: natural-paced conversations on familiar topics"],books:[{t:"Genki II — Textbook + Workbook (3rd ed.)",tag:"Core",notes:"Chapters 13–23. Direct continuation of Genki I. Introduces all the grammar forms above with the same structured method."},{t:"So-Matome N4 (Grammar, Vocabulary, Kanji, Reading-Listening)",tag:"Exam prep",notes:"Use after completing Genki II — 6-week structured format ideal for confirming exam-readiness in the final stretch."},{t:"Try! N4",tag:"Optional",notes:"Extra practice questions in JLPT format if you want more drilling beyond So-Matome."}]},
+{id:2,tag:"N3",name:"JLPT N3",col:"purple",vocab:"~3,750",kanji:"~650",grammar:"~200 (cumulative complexity)",hours:"950–1700",desc:"Intermediate level — the bridge level. Ability to understand Japanese used in everyday situations to a certain degree, plus the start of more abstract and complex sentence structures.",syllabus:["Honorific & humble speech basics (敬語 introduction)","Passive, causative, and causative-passive forms in depth","Complex conjunctions and connecting clauses (ものの, わりに, つつ)","Formal written style vs spoken style distinctions","Expressing assumption, hearsay, and conjecture (ようだ, らしい, そうだ)","Giving reasons and results in nuanced ways (ため, おかげで, せいで)","Reading: newspaper-style articles, instructions, varied written material","Listening: natural conversational speed across broader topics"],books:[{t:"Tobira: Gateway to Advanced Japanese",tag:"Core",notes:"15 thematic chapters bridging N4 to N3/N2. Rich reading passages on culture and society, paired with its own kanji companion book."},{t:"So-Matome N3 (Grammar, Vocab, Kanji, Reading, Listening)",tag:"Exam prep",notes:"Full 5-book series — by N3 the listening and reading books become essential, not optional. Use across the final 2–3 months."},{t:"新完全マスター N3 (Shin Kanzen Master N3)",tag:"Alternative core",notes:"More rigorous and detailed than So-Matome — many students switch to Kanzen Master from N3 onward for deeper grammar explanations."}]},
+{id:3,tag:"N2",name:"JLPT N2",col:"amber",vocab:"~6,000",kanji:"~1,000",grammar:"~180",hours:"1600–2800",desc:"Upper-intermediate level — ability to understand Japanese used in everyday situations and in a variety of circumstances to a higher degree, including some abstract/academic content. This is the typical minimum requirement for MEXT and most Japanese graduate programs.",syllabus:["Advanced keigo: full honorific/humble verb conjugation system","Nuanced grammar: differentiating near-synonymous patterns (のに vs けど, ため vs ので)","Formal/written register: academic and business Japanese conventions","Complex causative-passive and double-passive constructions","Abstract and opinion-based expression (にあたって, いかんで, をきっかけに)","Reading: editorials, academic-style essays, multi-paragraph arguments","Listening: lectures, news broadcasts, multi-speaker discussions","Vocabulary: increasing focus on academic, business, and abstract terms"],books:[{t:"新完全マスター N2 (Shin Kanzen Master N2) — full 5-book set",tag:"Core",notes:"Grammar, Vocabulary, Kanji, Reading, Listening. The gold standard for N2 — thorough and exam-precise. Most serious N2 candidates use this as their primary series."},{t:"So-Matome N2 — full 5-book set",tag:"Alternative/Supplement",notes:"Lighter and more visual than Kanzen Master. Good as a first pass before Kanzen Master, or as your primary set if you prefer a gentler ramp."},{t:"JLPT Official Practice Workbook N2",tag:"Exam prep",notes:"Real past-format practice tests from Japan Foundation. Use in the final 2 months under strict timed conditions."}]},
+{id:4,tag:"N1",name:"JLPT N1",col:"coral",vocab:"~10,000+",kanji:"~2,000 (general use kanji)",grammar:"~220+",hours:"2500–4500",desc:"Advanced/native-adjacent level — ability to understand Japanese used in a broad range of circumstances, including complex, abstract, and logically structured material across academic, professional, and literary registers.",syllabus:["Literary and classical-influenced grammar patterns (べからず, ずにはおかない, んばかり)","Full mastery of nuance among near-synonymous formal expressions","Academic and specialised vocabulary across fields (law, science, economics, literature)","Idiomatic expressions, four-character compounds (四字熟語), proverbs","Reading: dense academic papers, editorials, literary excerpts, legal/business documents","Listening: unscripted native speech, debates, fast natural conversation, lectures","Writing register flexibility: switching fluidly between formal, casual, and literary tones","Implicit meaning, irony, and indirect communication common in native discourse"],books:[{t:"新完全マスター N1 (Shin Kanzen Master N1) — full 5-book set",tag:"Core",notes:"The standard reference at N1. Dense and demanding — expect each grammar point to require real study time, not quick review."},{t:"JLPT Official Practice Workbook N1",tag:"Exam prep",notes:"Essential at this level — N1 reading passages are long and abstract; timed practice with official-format questions is non-negotiable."},{t:"NHK News / native novels & editorials",tag:"Immersion (not optional at N1)",notes:"At N1, textbooks alone are insufficient. Daily exposure to native news, novels, and opinion pieces is necessary to internalise N1-level nuance and vocabulary."}]}];
 
+const CM={teal:{bg:"var(--bg-success)",border:"var(--border-success)",text:"var(--text-success)",fill:"#0F6E56"},blue:{bg:"var(--bg-accent)",border:"var(--border-accent)",text:"var(--text-accent)",fill:"#185FA5"},purple:{bg:"var(--bg-pro)",border:"var(--border-pro)",text:"var(--text-pro)",fill:"#534AB7"},amber:{bg:"var(--bg-warning)",border:"var(--border-warning)",text:"var(--text-warning)",fill:"#854F0B"},coral:{bg:"var(--bg-danger)",border:"var(--border-danger)",text:"var(--text-danger)",fill:"#993C1D"}};
 
-      <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div
-            class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="color: wheat;">Jujutsu
-              Kaisen
-            </h1>
-            <p class="mb-8 leading-relaxed" style="color: rgb(131, 115, 90); font-weight: 600;">"Jujutsu Kaisen" plunges
-              viewers into a world of cursed spirits and supernatural battles. Follow Yuji Itadori as he becomes
-              entangled in the dangerous world of Jujutsu sorcery after swallowing a cursed object. Alongside his
-              allies, Yuji battles malevolent curses while mastering his newfound powers. With its stunning animation,
-              dynamic fight scenes, and compelling characters, "Jujutsu Kaisen" delivers thrilling action and
-              supernatural intrigue that keeps audiences spellbound.
-            </p>
-            <div class="flex justify-center">
-              <a href="https://hianime.to/jujutsu-kaisen-tv-534">
-                <button
-                  class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  style="background-color:rgba(188, 183, 186, 0.1); color: white;">
-                  Watch Now
-                </button>
-              </a>
-            </div>
-          </div>
-          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img class="object-cover object-center rounded" alt="hero"
-              src="https://p325k7wa.twic.pics/high/jujutsu-kaisen/jujutsu-kaisen-cursed-clash/00-page-setup/JJK-header-mobile2.jpg?twic=v1/resize=760/step=10/quality=80"
-              style="object-fit: cover;">
-          </div>
-        </div>
-      </section>
+const tagStyle=t=>{if(t==="Core") return {bg:"var(--bg-accent)",text:"var(--text-accent)",border:"var(--border-accent)"};if(t==="Exam prep") return {bg:"var(--bg-danger)",text:"var(--text-danger)",border:"var(--border-danger)"};if(t.includes("Alternative")) return {bg:"var(--bg-pro)",text:"var(--text-pro)",border:"var(--border-pro)"};if(t.includes("Immersion")) return {bg:"var(--bg-success)",text:"var(--text-success)",border:"var(--border-success)"};return {bg:"var(--bg-warning)",text:"var(--text-warning)",border:"var(--border-warning)"};};
 
+const ytChannels=[{name:"Japanese Ammo with Misa",icon:"ti-brand-youtube",lvl:"N5–N2",desc:"Extremely thorough grammar explanation videos in English. Covers Genki-level grammar in far more depth than the textbook alone — possibly the single best free grammar resource on YouTube."},{name:"Comprehensible Japanese",icon:"ti-brand-youtube",lvl:"N5–N3",desc:"Graded listening input taught entirely in Japanese at a level beginners can follow. Builds natural listening comprehension the way children acquire language — excellent daily listening habit."},{name:"Nihongo no Mori",icon:"ti-brand-youtube",lvl:"N5–N1",desc:"Japanese teachers explaining grammar in simple Japanese with English subtitles, organized by JLPT level. Has dedicated playlists for N5 through N1 grammar points."},{name:"JLPT Sensei (YouTube channel)",icon:"ti-brand-youtube",lvl:"N5–N2",desc:"Companion videos to the jlptsensei.com website — grammar point breakdowns matched to the JLPT syllabus, level by level."},{name:"Nihongo-Learning (どうがくしゃ)",icon:"ti-brand-youtube",lvl:"N3–N1",desc:"In-depth grammar comparison videos — excellent for the N2/N1 problem of telling apart near-synonymous grammar points, a common pain point at higher levels."},{name:"Cure Dolly",icon:"ti-brand-youtube",lvl:"N5–N3",desc:"A structural/logical approach to Japanese grammar that explains *why* Japanese works the way it does, rather than just patterns to memorise. Many learners say this 'unlocks' grammar intuition."},{name:"NHK World Japan — Easy Japanese",icon:"ti-brand-youtube",lvl:"N5–N4",desc:"Official NHK series teaching practical Japanese for daily life, free and beginner-friendly, with structured lessons mirroring nhk.or.jp/lesson."},{name:"Game Gengo / Nihongo con Teppei (podcast on YouTube)",icon:"ti-brand-youtube",lvl:"N4–N2",desc:"Slow, natural spoken Japanese podcasts aimed at learners — ideal for daily listening practice once you're past pure beginner level."}];
 
-      <footer class="text-gray-600 body-font">
-        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <img
-              src="https://www.wallpaperflare.com/static/467/499/639/sharingan-naruto-shippuuden-mangekyou-sharingan-uchiha-obito-wallpaper.jpg"
-              alt="" style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%;">
-            <span class="ml-3 text-xl" style="color: white;">AnimeCentral</span>
-          </a>
-          <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
-            style="color: azure;">© 2024 AnimeCentral - All Rights Reserved
-          </p>
-          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-            <a class="text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
-                viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-            <a class="ml-3 text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
-                viewBox="0 0 24 24">
-                <path
-                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                </path>
-              </svg>
-            </a>
-            <a class="ml-3 text-gray-500">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                class="w-5 h-5" viewBox="0 0 24 24">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-              </svg>
-            </a>
-            <a class="ml-3 text-gray-500">
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-                <path stroke="none"
-                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                <circle cx="4" cy="4" r="2" stroke="none"></circle>
-              </svg>
-            </a>
-          </span>
-        </div>
-      </footer>
-    </section>
-  </section>
+const tips=[{icon:"ti-clock-hour-4",t:"Time management is the real N2/N1 exam.",d:"The biggest reason capable students fail JLPT isn't knowledge — it's running out of time on reading and vocabulary/grammar sections. Practice every mock test strictly timed, never relaxed, from Day 1 of exam prep."},{icon:"ti-arrows-shuffle",t:"Do reading and listening in the SAME order as the real test.",d:"JLPT reading order moves from short to long passages; listening has a fixed structure with no question repeats. Practicing in the official order trains your pacing instincts for exam day."},{icon:"ti-target-arrow",t:"Don't aim for 100% — aim for the pass mark efficiently.",d:"JLPT has section-wise pass thresholds (you must clear EACH section, not just the overall score). If vocabulary/grammar is your weak section, focus extra hours there rather than over-polishing your strongest section."},{icon:"ti-microphone-2",t:"Shadow native audio daily, even for 10 minutes.",d:"Listening passively without speaking along under-trains your ear. Pause NHK or podcast audio every sentence and repeat it aloud, matching rhythm and pitch — this dramatically improves real listening comprehension over weeks."},{icon:"ti-book-2",t:"Read everything twice: once for meaning, once for grammar.",d:"On your first read of any passage, just get the gist. On the second read, stop and analyse every grammar pattern and unfamiliar word. This double-pass habit is what separates passive readers from students who actually retain N2/N1 grammar."},{icon:"ti-puzzle",t:"Group easily-confused grammar points together, never study them in isolation.",d:"N3–N1 grammar is full of near-synonyms (ものの vs くせに, ことから vs ことだから). Make a dedicated comparison page for each confusing cluster — write 2–3 sentences per point showing exactly how the nuance differs."},{icon:"ti-calendar-event",t:"Take a full mock test under real conditions every 2 weeks in your final 3 months.",d:"Same time of day as your actual exam slot, same break length, no phone, strict timer. This builds the mental stamina JLPT genuinely requires — N1 in particular is a long, draining exam."},{icon:"ti-eye",t:"Don't skip kanji you 'sort of' recognise.",d:"Partial recognition is the most dangerous trap at N2/N1 — questions are specifically designed to trip up readers who recognise a kanji's shape but confuse its reading or compound meaning. Always verify, never assume."},{icon:"ti-language",t:"Switch your phone, apps, and small daily habits to Japanese as you progress.",d:"From N3 onward, set your phone OS, a few apps, and your search engine default to Japanese. This passive daily exposure compounds enormously over months without taking dedicated study time."},{icon:"ti-pencil",t:"Always write your wrong answers out by hand, with the correct version beside them.",d:"Don't just mark mock-test mistakes right/wrong and move on. A dedicated 'mistakes notebook' where you handwrite the question, your wrong answer, and the correct answer with reasoning is one of the highest-leverage habits in JLPT prep."}];
+
+let tab="syllabus", lvl=3;
+
+function render(){
+  const tabs=[{id:"syllabus",label:"Syllabus & Books",icon:"ti-list-details"},{id:"youtube",label:"Free YouTube",icon:"ti-brand-youtube"},{id:"tips",label:"Tips & Tricks",icon:"ti-bulb"}];
+  let body="";
+
+  if(tab==="syllabus"){
+    const L=levels[lvl], c=CM[L.col];
+    const pills=levels.map((l,i)=>{const pc=CM[l.col], a=i===lvl; return `<button class="lvlpill click-anim" onclick="setLvlMaster(${i})" style="${a?`background:${pc.fill};color:#fff;border-color:${pc.fill}`:""}">${l.tag}</button>`;}).join("");
+    const stats=`<div style="display:flex;gap:8px;margin-bottom:12px"><div class="stat"><p class="statn" style="color:${c.text}">${L.vocab}</p><p class="statl">Vocabulary</p></div><div class="stat"><p class="statn" style="color:${c.text}">${L.kanji}</p><p class="statl">Kanji</p></div><div class="stat"><p class="statn" style="color:${c.text}">${L.grammar}</p><p class="statl">Grammar pts</p></div><div class="stat"><p class="statn" style="color:${c.text}">${L.hours}</p><p class="statl">Study hours*</p></div></div>`;
+    const syll=L.syllabus.map(s=>`<div style="display:flex;gap:8px;margin-bottom:8px;font-size:13px"><i class="ti ti-point-filled" style="font-size:13px;color:${c.text};flex-shrink:0;margin-top:3px" aria-hidden="true"></i><span style="color:var(--text-secondary);line-height:1.5">${s}</span></div>`).join("");
+    const books=L.books.map(b=>{const ts=tagStyle(b.tag); return `<div class="bk"><div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;margin-bottom:5px"><span style="font-size:13px;font-weight:500">${b.t}</span><span class="tag" style="background:${ts.bg};color:${ts.text};border-color:${ts.border}">${b.tag}</span></div><p style="margin:0;font-size:12px;color:var(--text-muted);line-height:1.5">${b.notes}</p></div>`;}).join("");
+
+    body=`
+      <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:1rem">${pills}</div>
+      <div style="background:${c.bg};border:0.5px solid ${c.border};border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px">
+        <h3 style="margin:0 0 6px;font-size:16px;font-weight:500;color:var(--text-primary)">${L.name}</h3>
+        <p style="margin:0 0 12px;font-size:13px;color:var(--text-secondary);line-height:1.6">${L.desc}</p>
+        ${stats}
+        <p style="margin:0;font-size:10px;color:var(--text-muted)">*Cumulative total study hours from absolute zero (varies widely by learner)</p>
+      </div>
+      <div class="card2"><p class="lbl" style="color:${c.text}">Syllabus coverage</p>${syll}</div>
+      <div class="card2" style="margin-bottom:1.5rem"><p class="lbl" style="color:${c.text}">Recommended books</p>${books}</div>`;
+  }
+
+  if(tab==="youtube"){
+    body=`<div class="card2" style="margin-bottom:1.5rem"><p class="lbl" style="color:var(--text-accent)">Free YouTube channels for JLPT prep</p>
+      ${ytChannels.map(y=>`<div class="yt"><i class="ti ${y.icon}" style="font-size:18px;color:var(--text-danger);flex-shrink:0;margin-top:1px" aria-hidden="true"></i><div><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px"><span style="font-size:13px;font-weight:500">${y.name}</span><span class="tag" style="background:var(--bg-accent);color:var(--text-accent);border-color:var(--border-accent)">${y.lvl}</span></div><p style="margin:0;font-size:12px;color:var(--text-muted);line-height:1.5">${y.desc}</p></div></div>`).join("")}
+    </div>`;
+  }
+
+  if(tab==="tips"){
+    body=`<div class="card2" style="margin-bottom:1.5rem"><p class="lbl" style="color:var(--text-accent)">Tips & tricks for JLPT preparation</p>
+      ${tips.map(t=>`<div class="tip"><i class="ti ${t.icon}" style="font-size:17px;color:var(--text-accent);flex-shrink:0;margin-top:1px" aria-hidden="true"></i><div><p style="margin:0 0 2px;font-size:13px;font-weight:500">${t.t}</p><p style="margin:0;font-size:12px;color:var(--text-muted);line-height:1.55">${t.d}</p></div></div>`).join("")}
+    </div>`;
+  }
+
+  const tabsHtml=tabs.map(t=>`<button class="tabbtn click-anim ${tab===t.id?"on":""}" onclick="setTabMaster('${t.id}')"><i class="ti ${t.icon}" style="font-size:15px" aria-hidden="true"></i>${t.label}</button>`).join("");
+
+  mount.classList.remove("content-shell");
+  void mount.offsetWidth;
+  mount.classList.add("content-shell");
+
+  mount.innerHTML=`
+    <div style="padding:1.5rem 1.25rem 1rem;border-bottom:0.5px solid var(--border)">
+      <p style="margin:0 0 4px;font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:.04em">Complete syllabus · N5 → N1</p>
+      <h2 style="margin:0;font-size:18px;font-weight:500">JLPT Roadmap from Scratch</h2>
+    </div>
+    <div style="display:flex;border-bottom:0.5px solid var(--border);background:var(--surface-2);overflow-x:auto">${tabsHtml}</div>
+    <div style="padding:1rem 1.25rem">${body}</div>`;
+}
+window.setTabMaster=function(t){tab=t;render();}
+window.setLvlMaster=function(i){lvl=i;render();}
+render();
+})();
+
+/* =========================
+   THEME TOGGLE + ANIMATED SWITCH
+========================= */
+(function initTheme(){
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  const saved = localStorage.getItem("jr_theme");
+  const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const startDark = saved ? saved === "dark" : systemDark;
+
+  if(startDark) root.setAttribute("data-theme","dark");
+  updateButton();
+
+  btn?.addEventListener("click", () => {
+    root.classList.add("theme-anim");
+    const isDark = root.getAttribute("data-theme") === "dark";
+    if(isDark){
+      root.removeAttribute("data-theme");
+      localStorage.setItem("jr_theme","light");
+    }else{
+      root.setAttribute("data-theme","dark");
+      localStorage.setItem("jr_theme","dark");
+    }
+    updateButton();
+    setTimeout(()=>root.classList.remove("theme-anim"), 420);
+  });
+
+  function updateButton(){
+    const dark = root.getAttribute("data-theme") === "dark";
+    if(btn) btn.textContent = dark ? "☀️ Light" : "🌙 Dark";
+  }
+})();
+
+renderTopNav();
+</script>
 </body>
-
 </html>
